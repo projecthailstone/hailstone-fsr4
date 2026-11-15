@@ -61,7 +61,7 @@ python3 "$client/tools/make_addon.py" --name "$NAME" --kind upscaler --version "
     --author "$AUTHOR" --description "$DESCRIPTION" --min-client "$MIN_CLIENT" \
     --notes "https://github.com/$RELEASE_REPO/releases/tag/$tag" --out "$out"
 "$sign" sign "$key" "$out/hailstone-addon.txt"
-"$sign" verify "$out/hailstone-addon.txt"
+"$sign" verify "$("$sign" public "$key")" "$out/hailstone-addon.txt"
 echo "release in $out"
 
 if [ "$publish" = "--publish" ]; then
